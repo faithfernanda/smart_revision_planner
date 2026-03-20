@@ -75,7 +75,7 @@
                                 <td class="px-8 py-5">
                                     <div class="flex gap-2">
                                         <span class="px-2 py-1 bg-white/10 rounded text-xs text-white">Diff: <?= $exam['difficulty_level'] ?></span>
-                                        <span class="px-2 py-1 bg-white/10 rounded text-xs text-white">Coef: <?= $exam['coefficient'] ?></span>
+                                        <span class="px-2 py-1 bg-white/10 rounded text-xs text-white"><?= __('coefficient') ?>: <?= $exam['coefficient'] ?></span>
                                     </div>
                                 </td>
                                 <td class="px-8 py-5 text-right">

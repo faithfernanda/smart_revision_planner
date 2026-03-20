@@ -42,7 +42,60 @@ class User {
         $stmt->bindParam(":major", $major);
         $stmt->bindParam(":role", $role);
 
+        if ($stmt->execute()) {
+            return $this->conn->lastInsertId();
+        }
+        return false;
+    }
+
+    /**
+     * Définit un code de réinitialisation pour un utilisateur
+     */
+    public function setResetCode($email, $code) {
+        $query = "UPDATE " . $this->table_name . " 
+                  SET reset_code = :code, reset_expires_at = (NOW() + INTERVAL '1 hour') 
+                  WHERE email = :email";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":code", $code);
+        $stmt->bindParam(":email", $email);
         return $stmt->execute();
+    }
+
+    /**
+     * Vérifie si un code de réinitialisation est valide
+     */
+    public function verifyResetCode($email, $code) {
+        $query = "SELECT id FROM " . $this->table_name . " 
+                  WHERE email = :email AND reset_code = :code AND reset_expires_at > NOW()";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":code", $code);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    /**
+     * Définit un code de vérification à l'inscription
+     */
+    public function setVerificationCode($id, $code) {
+        $query = "UPDATE " . $this->table_name . " SET verification_code = :code WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":code", $code);
+        $stmt->bindParam(":id", $id);
+        return $stmt->execute();
+    }
+
+    /**
+     * Vérifie l'email de l'utilisateur
+     */
+    public function verifyEmail($id, $code) {
+        $query = "UPDATE " . $this->table_name . " 
+                  SET is_verified = TRUE, verification_code = NULL 
+                  WHERE id = :id AND verification_code = :code";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":code", $code);
+        return $stmt->execute() && $stmt->rowCount() > 0;
     }
 
     /**

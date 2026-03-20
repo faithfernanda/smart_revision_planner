@@ -35,7 +35,21 @@
         <?php if(isset($_GET['registered'])): ?>
             <div class="bg-green-500/20 border border-green-500/50 text-green-100 p-4 rounded-xl mb-6 text-sm flex items-center gap-2 animate__animated animate__bounceIn">
                 <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                <?= __('registered_msg') ?>
+                <?= __('verification_code_sent') ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if(isset($_GET['verified'])): ?>
+            <div class="bg-green-500/20 border border-green-500/50 text-green-100 p-4 rounded-xl mb-6 text-sm flex items-center gap-2 animate__animated animate__bounceIn">
+                <i data-lucide="check-circle" class="w-5 h-5 flex-shrink-0"></i>
+                <?= __('email_verified_success') ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if(isset($_GET['reset'])): ?>
+            <div class="bg-green-500/20 border border-green-500/50 text-green-100 p-4 rounded-xl mb-6 text-sm flex items-center gap-2 animate__animated animate__bounceIn">
+                <i data-lucide="check-circle" class="w-5 h-5 flex-shrink-0"></i>
+                <?= __('password_reset_success') ?>
             </div>
         <?php endif; ?>
 
@@ -61,6 +75,9 @@
                     <input type="password" name="password" required 
                            class="w-full bg-indigo-900/50 border border-indigo-700 text-white rounded-xl py-3 pl-10 pr-4 placeholder-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all shadow-inner"
                            placeholder="<?= __('password_placeholder') ?>">
+                </div>
+                <div class="text-right mt-2">
+                    <a href="<?= url('/forgot-password') ?>" class="text-xs text-indigo-300 hover:text-white transition-colors"><?= __('forgot_password') ?? 'Mot de passe oublié ?' ?></a>
                 </div>
             </div>
             

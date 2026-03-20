@@ -42,7 +42,7 @@
                             <?= substr($subject['name'], 0, 1) ?>
                         </div>
                         <span class="px-3 py-1 bg-white/10 rounded-full text-xs font-semibold text-white border border-white/20">
-                            Coef: <?= $subject['coefficient'] ?>
+                            <?= __('coefficient') ?>: <?= $subject['coefficient'] ?>
                         </span>
                     </div>
                     

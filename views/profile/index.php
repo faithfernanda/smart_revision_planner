@@ -61,7 +61,7 @@
                         <div>
                             <label class="block text-indigo-200 mb-2 font-medium"><?= __('study_level') ?></label>
                             <select name="study_level" class="w-full px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all [&>option]:text-black">
-                                <option value="Lycee" <?= $user['study_level'] == 'Lycee' ? 'selected' : '' ?>><?= __('high_school') ?></option>
+                                <option value="BTS" <?= ($user['study_level'] == 'BTS' || $user['study_level'] == 'Lycee') ? 'selected' : '' ?>><?= __('high_school') ?></option>
                                 <option value="Licence" <?= $user['study_level'] == 'Licence' ? 'selected' : '' ?>><?= __('bachelor') ?></option>
                                 <option value="Master" <?= $user['study_level'] == 'Master' ? 'selected' : '' ?>><?= __('master') ?></option>
                             </select>

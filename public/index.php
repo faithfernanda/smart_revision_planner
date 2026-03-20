@@ -16,6 +16,14 @@ $router->add('GET', '/login', 'AuthController@loginForm');
 $router->add('POST', '/login', 'AuthController@login');
 $router->add('GET', '/register', 'AuthController@registerForm');
 $router->add('POST', '/register', 'AuthController@register');
+$router->add('GET', '/verify-email', 'AuthController@verifyEmailForm');
+$router->add('POST', '/verify-email', 'AuthController@verifyEmail');
+$router->add('GET', '/resend-verification', 'AuthController@resendVerificationCode');
+$router->add('GET', '/forgot-password', 'AuthController@forgotPasswordForm');
+$router->add('POST', '/forgot-password', 'AuthController@forgotPassword');
+$router->add('POST', '/verify-reset-code', 'AuthController@verifyResetCode');
+$router->add('POST', '/reset-password', 'AuthController@resetPassword');
+
 $router->add('GET', '/dashboard', 'DashboardController@index');
 $router->add('POST', '/dashboard/generate', 'DashboardController@generate');
 
